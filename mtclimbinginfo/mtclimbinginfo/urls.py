@@ -20,5 +20,6 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('searchnoboro/', searchnoboro.views.index),
+    #ここではsearchnoboro appのurls.pyをインクルードする
     path('searchnoboro/', include('searchnoboro.urls')),
 ]
