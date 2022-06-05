@@ -23,15 +23,13 @@ def index(request):
     return render(request, 'searchnoboro/index.html', params)
 
 def createnoboro(request):
-    params = {
-        'title': 'Search Noboro',
-        'form': CreateNoboroForm(),
-    }
     if (request.method == 'POST'):
-        volno = request.POST['volno']
-        year = request.POST['year']
-        season = request.POST['season']
-        noboro = Noboro(volno = volno, year = year, season = season)
+        obj = Noboro()
+        noboro = CreateNoboroForm(request.POST, instance=obj)
         noboro.save()
         return redirect(to='/searchnoboro')
+    params = {
+        'title': 'Create Noboro',
+        'form': CreateNoboroForm(),
+    }
     return render(request, 'searchnoboro/createnoboro.html', params)
