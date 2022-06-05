@@ -33,3 +33,17 @@ def createnoboro(request):
         'form': CreateNoboroForm(),
     }
     return render(request, 'searchnoboro/createnoboro.html', params)
+
+def editnoboro(request, num):
+    obj = Noboro.objects.get(id=num)
+    if(request.method == 'POST'):
+        noboro = CreateNoboroForm(request.POST, instance=obj)
+        noboro.save()
+        return redirect(to='/searchnoboro')
+    params  = {
+        'title': 'Edit Noboro',
+        'id': num,
+        'form': CreateNoboroForm(instance=obj),
+    }
+    return render(request, 'searchnoboro/editnoboro.html', params)
+
