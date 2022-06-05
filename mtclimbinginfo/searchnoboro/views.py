@@ -47,3 +47,14 @@ def editnoboro(request, num):
     }
     return render(request, 'searchnoboro/editnoboro.html', params)
 
+def deletenoboro(request, num):
+    noboro = Noboro.objects.get(id=num)
+    if(request.method == 'POST'):
+        noboro.delete()
+        return redirect(to='/searchnoboro')
+    params = {
+        'title': 'Delete Noboro',
+        'id': num,
+        'obj': noboro,
+    }
+    return render(request, 'searchnoboro/deletenoboro.html', params)

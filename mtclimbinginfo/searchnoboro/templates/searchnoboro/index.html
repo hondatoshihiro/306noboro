@@ -21,6 +21,7 @@
                 <th>year</th>
                 <th>season</th>
                 <th>edit</th>
+                <th>delete</th>
             </tr>
             {% for item in data %}
             <tr>
@@ -29,6 +30,7 @@
                 <td>{{item.year}}</td>
                 <td>{{item.season}}</td>
                 <td><a href="{% url 'editnoboro' item.id %}">Edit</a></td>
+                <td><a href="{% url 'deletenoboro' item.id %}">Delete</a></td>
             </tr>
             {% endfor %}
         </table>
