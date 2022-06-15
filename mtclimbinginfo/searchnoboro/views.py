@@ -5,10 +5,11 @@ from .models import Noboro
 from .models import NoboroContent
 from .forms import SearchNoboroForm
 from .forms import CreateNoboroForm
+from .forms import NoboroContentForm
 # Create your views here.
 
 #noboro表示
-def index(request):
+def listnoboro(request):
     params = {
         'title': 'Search Noboro',
         'message': 'all Noboros.',
@@ -78,15 +79,33 @@ def deletenoboro(request, num):
     #deletenoboro.htmlにnoboroを表示する。
     return render(request, 'searchnoboro/deletenoboro.html', params)
 
-#content表示
+#noborocontent表示
 def listnoborocontent(request, num):
-    #noborocontentlist = NoboroContent.objects.get_queryset(noboro=num)
+    noboro = Noboro.objects.get(id=num)
     noborocontentlist = NoboroContent.objects.filter(noboro=num)
     params = {
         'title': 'NoboroContent List',
         'message': 'Noboro Content',
         #'form': ListNoboroContentForm(),
-        'data': noborocontentlist,
+        'noboro': noboro,
+        'contentlist': noborocontentlist,
     }
     #createnoboro.htmlを表示する。
     return render(request, 'searchnoboro/listnoborocontent.html', params)
+
+#noborocontent登録
+def createnoborocontent(request, num):
+    if (request.method == 'POST'):
+        #POSTの場合
+        obj = NoboroContent()
+        noborocontent = NoboroContentForm(request.POST, instance=obj)
+        noborocontent.save()
+        #noborocontentオブジェクトを保存後、
+        #index.htmlを表示
+        return redirect(to='/searchnoboro')
+    params = {
+        'title': 'Create NoboroContent',
+        'form': NoboroContentForm(),
+    }
+    #createnoborocontent.htmlを表示する。
+    return render(request, 'searchnoboro/createnoborocontent.html', params)

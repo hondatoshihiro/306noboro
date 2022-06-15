@@ -19,14 +19,15 @@
                 <th>Content</th>
             </tr>
             <!-- views.indexで用意したdataを表示 -->
-            {% for item in data %}
+            {% for content in contentlist %}
             <tr>
-                <td>{{item.title}}</td>
-                <td>{{item.subtitle}}</td>
-                <td>{{item.pageno}}</td>
-                <td>{{item.content}}</td>
+                <td>{{content.title}}</td>
+                <td>{{content.subtitle}}</td>
+                <td>{{content.pageno}}</td>
+                <td>{{content.content}}</td>
             </tr>
             {% endfor %}
         </table>
+        <a href="{% url 'createnoborocontent' noboro.id %}">Create Content</a>
     </body>
 </html>

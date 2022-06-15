@@ -1,6 +1,7 @@
 from django import forms
 
 from .models import Noboro
+from .models import NoboroContent
 
 #index.htmlに表示する項目
 class SearchNoboroForm(forms.Form):
@@ -20,4 +21,10 @@ class CreateNoboroForm(forms.ModelForm):
     class Meta:
         model = Noboro
         fields = ['volno', 'year', 'season']
+
+class NoboroContentForm(forms.ModelForm):
+    #ModelFormの仕組み、この文法なに？
+    class Meta:
+        model = NoboroContent
+        fields = ['title', 'subtitle', 'pageno', 'content']
 
