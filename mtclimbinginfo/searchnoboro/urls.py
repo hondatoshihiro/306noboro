@@ -7,4 +7,5 @@ urlpatterns = [
     path('createnoboro', views.createnoboro, name='createnoboro'),
     path('editnoboro/<int:num>', views.editnoboro, name='editnoboro'),
     path('deletenoboro/<int:num>', views.deletenoboro, name='deletenoboro'),
+    path('listnoborocontent/<int:num>', views.listnoborocontent, name='listnoborocontent'),
 ]

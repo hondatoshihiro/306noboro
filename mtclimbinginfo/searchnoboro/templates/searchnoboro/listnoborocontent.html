@@ -1,0 +1,32 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+    <!-- head部 -->
+    <head>
+        <meta charset="utf-8">
+        <title>{{title}}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    </head>
+    <!-- body部 -->
+    <body class="container">
+        <h1 class="display-4 text-primary">{{title}}</h1>
+        <p class="h5 mt-4">{{message|safe}}</p>
+        <table class="table">
+            <tr>
+                <th>Title</th>
+                <th>SubTitle</th>
+                <th>PageNo</th>
+                <th>Content</th>
+            </tr>
+            <!-- views.indexで用意したdataを表示 -->
+            {% for item in data %}
+            <tr>
+                <td>{{item.title}}</td>
+                <td>{{item.subtitle}}</td>
+                <td>{{item.pageno}}</td>
+                <td>{{item.content}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

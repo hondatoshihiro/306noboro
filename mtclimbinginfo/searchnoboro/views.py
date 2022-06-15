@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from .models import Noboro
+from .models import NoboroContent
 from .forms import SearchNoboroForm
 from .forms import CreateNoboroForm
 # Create your views here.
@@ -76,3 +77,16 @@ def deletenoboro(request, num):
     }
     #deletenoboro.htmlにnoboroを表示する。
     return render(request, 'searchnoboro/deletenoboro.html', params)
+
+#content表示
+def listnoborocontent(request, num):
+    #noborocontentlist = NoboroContent.objects.get_queryset(noboro=num)
+    noborocontentlist = NoboroContent.objects.filter(noboro=num)
+    params = {
+        'title': 'NoboroContent List',
+        'message': 'Noboro Content',
+        #'form': ListNoboroContentForm(),
+        'data': noborocontentlist,
+    }
+    #createnoboro.htmlを表示する。
+    return render(request, 'searchnoboro/listnoborocontent.html', params)

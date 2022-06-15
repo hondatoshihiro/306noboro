@@ -24,6 +24,7 @@
                 <th>volno</th>
                 <th>year</th>
                 <th>season</th>
+                <th>contents</th>
                 <th>edit</th>
                 <th>delete</th>
             </tr>
@@ -34,6 +35,7 @@
                 <td>{{item.volno}}</td>
                 <td>{{item.year}}</td>
                 <td>{{item.season}}</td>
+                <td><a href="{% url 'listnoborocontent' item.id %}">Contents</a></td>
                 <td><a href="{% url 'editnoboro' item.id %}">Edit</a></td>
                 <td><a href="{% url 'deletenoboro' item.id %}">Delete</a></td>
             </tr>
