@@ -10,4 +10,5 @@ urlpatterns = [
     path('deletenoboro/<int:num>', views.deletenoboro, name='deletenoboro'),
     path('listnoborocontent/<int:num>', views.listnoborocontent, name='listnoborocontent'),
     path('createnoborocontent/<int:num>', views.createnoborocontent, name='createnoborocontent'),
+    path('editnoborocontent/<int:num>', views.editnoborocontent, name='editnoborocontent'),
 ]

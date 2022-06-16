@@ -110,3 +110,20 @@ def createnoborocontent(request, num):
     }
     #createnoborocontent.htmlを表示する。
     return render(request, 'searchnoboro/createnoborocontent.html', params)
+
+def editnoborocontent(request, num):
+    obj = NoboroContent.objects.get(id=num)
+    if(request.method == 'POST'):
+        #POSTの場合
+        noborocontent = NoboroContentForm(request.POST, instance=obj)
+        noborocontent.save()
+        #noborocontentオブジェクトを保存後、
+        #index.htmlを表示
+        return redirect(to='/searchnoboro')
+    params  = {
+        'title': 'Edit NoboroContent',
+        'id': num,
+        'form': NoboroContentForm(instance=obj),
+    }
+    #editnoborocontent.htmlにobjを表示する。
+    return render(request, 'searchnoboro/editnoborocontent.html', params)

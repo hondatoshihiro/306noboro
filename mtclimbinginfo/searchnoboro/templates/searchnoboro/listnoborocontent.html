@@ -17,6 +17,7 @@
                 <th>SubTitle</th>
                 <th>PageNo</th>
                 <th>Content</th>
+                <th>edit</th>
             </tr>
             <!-- views.indexで用意したdataを表示 -->
             {% for content in contentlist %}
@@ -25,6 +26,7 @@
                 <td>{{content.subtitle}}</td>
                 <td>{{content.pageno}}</td>
                 <td>{{content.content}}</td>
+                <td><a href="{% url 'editnoborocontent' content.id %}">Edit</a></td>
             </tr>
             {% endfor %}
         </table>
