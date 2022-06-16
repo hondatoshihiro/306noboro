@@ -26,5 +26,5 @@ class NoboroContentForm(forms.ModelForm):
     #ModelFormの仕組み、この文法なに？
     class Meta:
         model = NoboroContent
-        fields = ['title', 'subtitle', 'pageno', 'content']
+        fields = ['title', 'subtitle', 'pageno', 'content', 'noboro']
 

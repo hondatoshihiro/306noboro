@@ -11,7 +11,7 @@
     <body class="container">
         <h1 class="display-4 text-primary">{{title}}</h1>
         <!-- views.createnoboroにpostするform -->
-        <form action="{% url 'createnoborocontent' %}" method="post">
+        <form action="{% url 'createnoborocontent' id %}" method="post">
             <!-- csrf対策のおまじない -->
             {% csrf_token %}
             <table class="table">

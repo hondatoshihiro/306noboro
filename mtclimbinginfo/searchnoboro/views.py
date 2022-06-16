@@ -105,6 +105,7 @@ def createnoborocontent(request, num):
         return redirect(to='/searchnoboro')
     params = {
         'title': 'Create NoboroContent',
+        'id': num,
         'form': NoboroContentForm(),
     }
     #createnoborocontent.htmlを表示する。
