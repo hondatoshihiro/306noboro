@@ -28,6 +28,20 @@ def listnoboro(request):
     #index.htmlにparamsを渡して表示
     return render(request, 'searchnoboro/index.html', params)
 
+#noborocontent表示
+def listnoborocontent(request, num):
+    noboro = Noboro.objects.get(id=num)
+    noborocontentlist = NoboroContent.objects.filter(noboro=num)
+    params = {
+        'title': 'NoboroContent List',
+        'message': 'Noboro Content',
+        #'form': ListNoboroContentForm(),
+        'noboro': noboro,
+        'contentlist': noborocontentlist,
+    }
+    #createnoboro.htmlを表示する。
+    return render(request, 'searchnoboro/listnoborocontent.html', params)
+
 #noboro登録
 def createnoboro(request):
     if (request.method == 'POST'):
@@ -44,54 +58,6 @@ def createnoboro(request):
     }
     #createnoboro.htmlを表示する。
     return render(request, 'searchnoboro/createnoboro.html', params)
-
-#noboro編集
-def editnoboro(request, num):
-    obj = Noboro.objects.get(id=num)
-    if(request.method == 'POST'):
-        #POSTの場合
-        noboro = CreateNoboroForm(request.POST, instance=obj)
-        noboro.save()
-        #noboroオブジェクトを保存後、
-        #index.htmlを表示
-        return redirect(to='/searchnoboro')
-    params  = {
-        'title': 'Edit Noboro',
-        'id': num,
-        'form': CreateNoboroForm(instance=obj),
-    }
-    #editnoboro.htmlにobjを表示する。
-    return render(request, 'searchnoboro/editnoboro.html', params)
-
-#noboro削除
-def deletenoboro(request, num):
-    noboro = Noboro.objects.get(id=num)
-    if(request.method == 'POST'):
-        noboro.delete()
-        #noboroオブジェクトを削除後、
-        #index.htmlを表示
-        return redirect(to='/searchnoboro')
-    params = {
-        'title': 'Delete Noboro',
-        'id': num,
-        'obj': noboro,
-    }
-    #deletenoboro.htmlにnoboroを表示する。
-    return render(request, 'searchnoboro/deletenoboro.html', params)
-
-#noborocontent表示
-def listnoborocontent(request, num):
-    noboro = Noboro.objects.get(id=num)
-    noborocontentlist = NoboroContent.objects.filter(noboro=num)
-    params = {
-        'title': 'NoboroContent List',
-        'message': 'Noboro Content',
-        #'form': ListNoboroContentForm(),
-        'noboro': noboro,
-        'contentlist': noborocontentlist,
-    }
-    #createnoboro.htmlを表示する。
-    return render(request, 'searchnoboro/listnoborocontent.html', params)
 
 #noborocontent登録
 def createnoborocontent(request, num):
@@ -111,6 +77,25 @@ def createnoborocontent(request, num):
     #createnoborocontent.htmlを表示する。
     return render(request, 'searchnoboro/createnoborocontent.html', params)
 
+#noboro編集
+def editnoboro(request, num):
+    obj = Noboro.objects.get(id=num)
+    if(request.method == 'POST'):
+        #POSTの場合
+        noboro = CreateNoboroForm(request.POST, instance=obj)
+        noboro.save()
+        #noboroオブジェクトを保存後、
+        #index.htmlを表示
+        return redirect(to='/searchnoboro')
+    params  = {
+        'title': 'Edit Noboro',
+        'id': num,
+        'form': CreateNoboroForm(instance=obj),
+    }
+    #editnoboro.htmlにobjを表示する。
+    return render(request, 'searchnoboro/editnoboro.html', params)
+
+#noborocontent編集
 def editnoborocontent(request, num):
     obj = NoboroContent.objects.get(id=num)
     if(request.method == 'POST'):
@@ -127,3 +112,35 @@ def editnoborocontent(request, num):
     }
     #editnoborocontent.htmlにobjを表示する。
     return render(request, 'searchnoboro/editnoborocontent.html', params)
+
+#noboro削除
+def deletenoboro(request, num):
+    noboro = Noboro.objects.get(id=num)
+    if(request.method == 'POST'):
+        noboro.delete()
+        #noboroオブジェクトを削除後、
+        #index.htmlを表示
+        return redirect(to='/searchnoboro')
+    params = {
+        'title': 'Delete Noboro',
+        'id': num,
+        'obj': noboro,
+    }
+    #deletenoboro.htmlにnoboroを表示する。
+    return render(request, 'searchnoboro/deletenoboro.html', params)
+
+#noborocontent削除
+def deletenoborocontent(request, num):
+    noborocontent = NoboroContent.objects.get(id=num)
+    if(request.method == 'POST'):
+        noborocontent.delete()
+        #noborocontentオブジェクトを削除後、
+        #index.htmlを表示
+        return redirect(to='/searchnoboro')
+    params = {
+        'title': 'Delete NoboroContent',
+        'id': num,
+        'obj': noborocontent,
+    }
+    #deletenoborocontent.htmlにnoborocontentを表示する。
+    return render(request, 'searchnoboro/deletenoborocontent.html', params)
