@@ -12,7 +12,7 @@ class Noboro(models.Model):
     season = models.CharField(max_length=8)
 
     def __str__(self):
-        return '<Noboro:id=' + str(self.id) + ', ' + str(self.volno) + '>'
+        return '<Noboro:' + str(self.volno) + ', ' + str(self.year) + ', ' + str(self.season) + '>'
 
 class NoboroContent(models.Model):
     #記事タイトル
@@ -27,4 +27,4 @@ class NoboroContent(models.Model):
     noboro = models.ForeignKey(Noboro, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '<NoboroContent=' + str(self.id) + ', ' + self.title + ':' + self.subtitle + '>'
+        return '<NoboroContent:' + self.title + ', ' + self.subtitle + '>'

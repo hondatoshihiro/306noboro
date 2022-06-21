@@ -97,6 +97,7 @@ def editnoboro(request, num):
 
 #noborocontent編集
 def editnoborocontent(request, num):
+    #NoboroContentのid
     obj = NoboroContent.objects.get(id=num)
     if(request.method == 'POST'):
         #POSTの場合
