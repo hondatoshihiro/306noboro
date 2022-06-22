@@ -28,3 +28,12 @@ class NoboroContent(models.Model):
 
     def __str__(self):
         return '<NoboroContent:' + self.title + ', ' + self.subtitle + '>'
+
+class Prefecture(models.Model):
+    #県コード
+    prefcode = models.IntegerField(default=0)
+    #県名
+    prefname = models.CharField(max_length=64, null=False)
+
+    def __str__(self):
+        return '<Prefecture:' + str(self.prefcode) + ', ' + self.prefname + '>'
