@@ -30,6 +30,7 @@ def listnoboro(request):
 
 #noborocontent表示
 def listnoborocontent(request, num):
+    #NoboroのID
     noboro = Noboro.objects.get(id=num)
     noborocontentlist = NoboroContent.objects.filter(noboro=num)
     params = {
@@ -98,10 +99,11 @@ def editnoboro(request, num):
 #noborocontent編集
 def editnoborocontent(request, num):
     #NoboroContentのid
-    obj = NoboroContent.objects.get(id=num)
+    #getメソッドは、Model.DoesNotExist,Model.MultipleObjectsReturned Exceptionを返す
+    noborocontent = NoboroContent.objects.get(id=num)
     if(request.method == 'POST'):
         #POSTの場合
-        noborocontent = NoboroContentForm(request.POST, instance=obj)
+        noborocontent = NoboroContentForm(request.POST, instance=noborocontent)
         noborocontent.save()
         #noborocontentオブジェクトを保存後、
         #index.htmlを表示
@@ -109,7 +111,8 @@ def editnoborocontent(request, num):
     params  = {
         'title': 'Edit NoboroContent',
         'id': num,
-        'form': NoboroContentForm(instance=obj),
+        'contentid': noborocontent.noboro.id,
+        'form': NoboroContentForm(instance=noborocontent),
     }
     #editnoborocontent.htmlにobjを表示する。
     return render(request, 'searchnoboro/editnoborocontent.html', params)
@@ -141,6 +144,7 @@ def deletenoborocontent(request, num):
     params = {
         'title': 'Delete NoboroContent',
         'id': num,
+        'contentid': noborocontent.noboro.id,
         'obj': noborocontent,
     }
     #deletenoborocontent.htmlにnoborocontentを表示する。
