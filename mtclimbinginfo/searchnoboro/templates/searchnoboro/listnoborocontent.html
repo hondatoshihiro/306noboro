@@ -1,0 +1,39 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+    <!-- head部 -->
+    <head>
+        <meta charset="utf-8">
+        <title>{{title}}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    </head>
+    <!-- body部 -->
+    <body class="container">
+        <h1 class="display-4 text-primary">{{title}}</h1>
+        <p class="h5 mt-4">{{message|safe}}</p>
+        <table class="table">
+            <tr>
+                <th>Title</th>
+                <th>SubTitle</th>
+                <th>PageNo</th>
+                <th>Content</th>
+                <th>edit</th>
+                <th>delete</th>
+            </tr>
+            <!-- views.indexで用意したdataを表示 -->
+            {% for content in contentlist %}
+            <tr>
+                <td>{{content.title}}</td>
+                <td>{{content.subtitle}}</td>
+                <td>{{content.pageno}}</td>
+                <td>{{content.content}}</td>
+                <td><a href="{% url 'editnoborocontent' content.id %}">Edit</a></td>
+                <td><a href="{% url 'deletenoborocontent' content.id %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{% url 'createnoborocontent' noboro.id %}">Create Content</a>
+        <br>
+        <a href="{% url 'index' %}">List Noboro</a>
+    </body>
+</html>
